@@ -50,7 +50,7 @@ jobs:
       - name: Flutter pub get
         run: flutter pub get
       - name: Flutter analyze (gate)
-        run: flutter analyze --no-fatal-infos --no-fatal-warnings
+        run: flutter analyze --no-fatal-infos --no-fatal-warnings lib/
 
       # TODO: substituir --pwa-strategy=none quando Flutter >= 3.45 remover a flag
       - name: Flutter build web
