@@ -49,6 +49,7 @@ jobs:
 
       - name: Flutter pub get
         run: flutter pub get
+
       - name: Flutter analyze (gate)
         run: flutter analyze --no-fatal-infos --no-fatal-warnings lib/
 
