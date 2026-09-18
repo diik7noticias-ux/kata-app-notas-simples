@@ -1,0 +1,91 @@
+{
+  "screen": [
+    {
+      "name": "HomeScreen",
+      "kind": "list",
+      "topBar": {
+        "title": "Notas Simples",
+        "actions": []
+      },
+      "body": {
+        "type": "column",
+        "children": [
+          {
+            "type": "icon",
+            "icon": "note_add",
+            "size": 64,
+            "color": "kPrimaryColor"
+          },
+          {
+            "type": "text",
+            "text": "Adicione suas notas",
+            "style": {
+              "fontSize": 20,
+              "fontWeight": "w600"
+            },
+            "align": "center"
+          },
+          {
+            "type": "text",
+            "text": "Clique no botão abaixo para criar uma nota",
+            "style": {
+              "color": "grey"
+            }
+          }
+        ],
+        "padding": 24
+      },
+      "fab": {
+        "icon": "add",
+        "action": "navigate_to_note_screen"
+      }
+    },
+    {
+      "name": "NoteScreen",
+      "kind": "form",
+      "topBar": {
+        "title": "Nova Nota",
+        "actions": [
+          {
+            "icon": "save",
+            "action": "save_note"
+          }
+        ]
+      },
+      "body": {
+        "type": "form",
+        "fields": [
+          {
+            "type": "text_form_field",
+            "label": "Título",
+            "validator": "Por favor, insira um título"
+          },
+          {
+            "type": "text_form_field",
+            "label": "Conteúdo",
+            "multiline": true,
+            "expand": true
+          }
+        ],
+        "padding": 16
+      }
+    }
+  ],
+  "colors": {
+    "primary": "#1BB9BE"
+  },
+  "kind": "empty",
+  "topBar": {
+    "title": "Notas Simples",
+    "hasBack": false,
+    "actions": []
+  },
+  "body": {
+    "type": "empty",
+    "message": "App gerada pelo KATA."
+  },
+  "fab": {
+    "icon": "+",
+    "visible": false
+  }
+}
