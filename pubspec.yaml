@@ -1,7 +1,7 @@
 name: notas_simples
 description: Notas Simples
 publish_to: "none"
-version: 0.1.0+1
+version: 0.1.0+2
 
 environment:
   sdk: ">=3.4.0 <4.0.0"
@@ -11,6 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.8
+  uuid: ^3.0.7
 
 dev_dependencies:
   flutter_test:
