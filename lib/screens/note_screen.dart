@@ -1,19 +1,31 @@
 import "package:flutter/material.dart";
 import "package:uuid/uuid.dart";
 import "../models/note_model.dart";
+import "../services/note_service.dart";
 
 class NoteScreen extends StatefulWidget {
-  const NoteScreen({super.key});
+  final Note? note;
+  const NoteScreen({super.key, this.note});
 
   @override
   State<NoteScreen> createState() => _NoteScreenState();
 }
 
 class _NoteScreenState extends State<NoteScreen> {
-  final _formKey = GlobalKey<FormState>();
-  final _titleController = TextEditingController();
-  final _contentController = TextEditingController();
+  late final GlobalKey<FormState> _formKey;
+  late final TextEditingController _titleController;
+  late final TextEditingController _contentController;
   final _uuid = const Uuid();
+  bool _isEditing = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _formKey = GlobalKey<FormState>();
+    _titleController = TextEditingController(text: widget.note?.title ?? "");
+    _contentController = TextEditingController(text: widget.note?.content ?? "");
+    _isEditing = widget.note != null;
+  }
 
   @override
   void dispose() {
@@ -22,17 +34,21 @@ class _NoteScreenState extends State<NoteScreen> {
     super.dispose();
   }
 
-  void _saveNote() {
+  void _saveNote() async {
     if (_formKey.currentState!.validate()) {
       final note = Note(
-        id: _uuid.v4(),
+        id: widget.note?.id ?? _uuid.v4(),
         title: _titleController.text,
         content: _contentController.text,
         createdAt: DateTime.now(),
       );
-      // TODO: Implementar lógica para salvar a nota (ex: Hive, SharedPreferences, etc.)
+      if (_isEditing) {
+        await NoteService.updateNote(note);
+      } else {
+        await NoteService.addNote(note);
+      }
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Nota salva com sucesso!")),
+        SnackBar(content: Text(_isEditing ? "Nota atualizada com sucesso!" : "Nota salva com sucesso!")),
       );
       Navigator.pop(context);
     }
@@ -42,7 +58,7 @@ class _NoteScreenState extends State<NoteScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Nova Nota"),
+        title: Text(_isEditing ? "Editar Nota" : "Nova Nota"),
         actions: [
           IconButton(
             icon: const Icon(Icons.save),
