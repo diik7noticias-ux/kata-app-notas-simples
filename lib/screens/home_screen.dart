@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-
+import "note_screen.dart";
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -16,25 +16,28 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Icons.flutter_dash, size: 64, color: kPrimaryColorFallback),
+              Icon(Icons.note_add, size: 64, color: kPrimaryColor),
               SizedBox(height: 16),
               Text(
-                "Notas Simples",
+                "Adicione suas notas",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 8),
               Text(
-                "Gerado por KATA",
+                "Clique no botão abaixo para criar uma nota",
                 style: TextStyle(color: Colors.grey),
               ),
             ],
           ),
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.pushNamed(context, '/note');
+        },
+        child: const Icon(Icons.add),
+      ),
     );
   }
 }
-
-// Constante local para evitar import circular
-const Color kPrimaryColorFallback = Color(0xFF1BB9BE);
