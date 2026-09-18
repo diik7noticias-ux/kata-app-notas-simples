@@ -1,13 +1,11 @@
 import "package:flutter/material.dart";
-
 import "theme.dart";
 import "screens/home_screen.dart";
-
+import "screens/note_screen.dart";
 
 void main() {
   runApp(const KataApp());
 }
-
 
 class KataApp extends StatelessWidget {
   const KataApp({super.key});
@@ -18,7 +16,11 @@ class KataApp extends StatelessWidget {
       title: "Notas Simples",
       debugShowCheckedModeBanner: false,
       theme: buildKataTheme(),
-      home: const HomeScreen(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const HomeScreen(),
+        '/note': (context) => const NoteScreen(),
+      },
     );
   }
 }
