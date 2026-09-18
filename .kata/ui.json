@@ -31,6 +31,15 @@
             "style": {
               "color": "grey"
             }
+          },
+          {
+            "type": "list",
+            "items": [
+              {
+                "type": "note_list_item",
+                "hasDelete": true
+              }
+            ]
           }
         ],
         "padding": 24
