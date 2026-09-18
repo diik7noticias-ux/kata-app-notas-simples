@@ -50,6 +50,9 @@ jobs:
       - name: Flutter pub get
         run: flutter pub get
 
+      - name: Gerar codigo (build_runner)
+        run: flutter pub run build_runner build --delete-conflicting-outputs || true
+
       - name: Flutter analyze (gate)
         run: flutter analyze --no-fatal-infos --no-fatal-warnings lib/
 
