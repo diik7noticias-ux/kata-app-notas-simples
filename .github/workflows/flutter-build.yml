@@ -30,10 +30,15 @@ jobs:
         run: flutter doctor -v
 
       - name: Gerar pasta android/ e outras plataformas
-        run: flutter create . --platforms=android --project-name notas_simples --org org.kata.notassimples
+        run: flutter create . --platforms=android --project-name notas_simples --org {BUNDLE}
 
       - name: Instalar dependencias
         run: flutter pub get
+      - name: Gerar codigo (build_runner)
+        run: flutter pub run build_runner build --delete-conflicting-outputs || true
+
+      - name: Flutter analyze (gate)
+        run: flutter analyze --no-fatal-infos --no-fatal-warnings lib/
 
       - name: Build APK release
         run: flutter build apk --release --split-per-abi
