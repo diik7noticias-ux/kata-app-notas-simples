@@ -1,8 +1,5 @@
 import 'package:hive_flutter/hive_flutter.dart';
 import '../models/note_model.dart';
-import 'package:hive_generator/hive_generator.dart';
-
-part 'note_model.g.dart';
 
 class NoteService {
   static const String _notesBoxName = 'notes_box';
@@ -10,7 +7,7 @@ class NoteService {
 
   static Future<void> init() async {
     await Hive.initFlutter();
-    Hive.registerAdapter(NoteAdapter());
+    await Hive.registerAdapter(NoteAdapter());
     _notesBox = await Hive.openBox<Note>(_notesBoxName);
   }
 
