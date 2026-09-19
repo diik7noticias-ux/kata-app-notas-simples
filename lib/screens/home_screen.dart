@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import "note_screen.dart";
 import "../models/note_model.dart";
 import "../services/note_service.dart";
+import "../widgets/note_list_item.dart";
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -12,7 +13,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   List<Note> _notes = [];
-  final List<String> _categories = ['Frutas'];
+  final List<String> _categories = ['geral', 'trabalho', 'estudo', 'frutas'];
 
   @override
   void initState() {
@@ -41,18 +42,17 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text("Notas Simples"),
         actions: [
-          PopupMenuButton<String>(
+          PopupMenuButton<String>( 
             onSelected: (category) {
-              // Implementar lógica para filtrar notas por categoria
               setState(() {
-                // Aqui você pode adicionar lógica para filtrar notas por categoria
+                // Implementar lógica para filtrar notas por categoria
               });
-            },
+            }, 
             itemBuilder: (BuildContext context) {
               return _categories.map((String category) {
-                return PopupMenuItem<String>(
+                return PopupMenuItem<String>( 
                   value: category,
-                  child: Text(category),
+                  child: Text(category.capitalize()),
                 );
               }).toList();
             },
@@ -63,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
         padding: const EdgeInsets.all(24),
         child: Column(
           children: [
-            const Icon(Icons.note_add, size: 64, color: kPrimaryColor),
+            const Icon(Icons.note_add, size: 64, color: Color(0xFF1BB9BE)),
             const SizedBox(height: 16),
             const Text(
               "Adicione suas notas",
@@ -99,5 +99,11 @@ class _HomeScreenState extends State<HomeScreen> {
         child: const Icon(Icons.add),
       ),
     );
+  }
+}
+
+extension StringExtension on String {
+  String capitalize() {
+    return "${this[0].toUpperCase()}${substring(1)}";
   }
 }
