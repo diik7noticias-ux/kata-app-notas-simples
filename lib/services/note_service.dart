@@ -7,7 +7,7 @@ class NoteService {
 
   static Future<void> init() async {
     await Hive.initFlutter();
-    await Hive.registerAdapter(NoteAdapter());
+    Hive.registerAdapter(NoteAdapter());
     _notesBox = await Hive.openBox<Note>(_notesBoxName);
   }
 
