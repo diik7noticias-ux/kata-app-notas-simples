@@ -30,4 +30,16 @@ class NoteService {
   static Future<void> deleteNote(String noteId) async {
     await _notesBox.delete(noteId);
   }
+
+  static List<String> getCategories() {
+    return ['Frutas', 'Legumes', 'Outros'];
+  }
+
+  static String? getCategoryName(int index) {
+    final categories = getCategories();
+    if (index >= 0 && index < categories.length) {
+      return categories[index];
+    }
+    return null;
+  }
 }
