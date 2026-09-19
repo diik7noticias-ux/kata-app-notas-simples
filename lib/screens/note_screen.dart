@@ -33,7 +33,7 @@ class _NoteScreenState extends State<NoteScreen> {
     _titleController = TextEditingController(text: widget.note?.title ?? "");
     _contentController = TextEditingController(text: widget.note?.content ?? "");
     _isEditing = widget.note != null;
-    _selectedCategory = widget.note?.title.toLowerCase().contains('frutas') == true ? 'frutas' : 'geral';
+    _selectedCategory = widget.note?.category ?? 'geral';
   }
 
   @override
@@ -50,6 +50,7 @@ class _NoteScreenState extends State<NoteScreen> {
         title: _titleController.text,
         content: _contentController.text,
         createdAt: DateTime.now(),
+        category: _selectedCategory,
       );
       if (_isEditing) {
         await NoteService.updateNote(note);
@@ -95,14 +96,14 @@ class _NoteScreenState extends State<NoteScreen> {
                 },
               ),
               const SizedBox(height: 16),
-              DropdownButtonFormField<String>(
+              DropdownButtonFormField<String>( 
                 value: _selectedCategory,
                 decoration: const InputDecoration(
                   labelText: "Categoria",
                   border: OutlineInputBorder(),
                 ),
                 items: _categories.map((String category) {
-                  return DropdownMenuItem<String>(
+                  return DropdownMenuItem<String>( 
                     value: category,
                     child: Text(category.capitalize()),
                   );
@@ -140,7 +141,7 @@ class _NoteScreenState extends State<NoteScreen> {
   }
 }
 
-extension StringExtension on String {
+extension StringExtension {
   String capitalize() {
     return "${this[0].toUpperCase()}${substring(1)}";
   }
