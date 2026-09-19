@@ -1,5 +1,4 @@
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:meta/meta.dart';
 import '../models/note_model.dart';
 
 class NoteService {
