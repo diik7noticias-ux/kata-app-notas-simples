@@ -17,6 +17,14 @@ class _NoteScreenState extends State<NoteScreen> {
   late final TextEditingController _contentController;
   final _uuid = const Uuid();
   bool _isEditing = false;
+  String _selectedCategory = 'geral';
+
+  final List<String> _categories = [
+    'geral',
+    'trabalho',
+    'pessoal',
+    'frutas',
+  ];
 
   @override
   void initState() {
@@ -25,6 +33,7 @@ class _NoteScreenState extends State<NoteScreen> {
     _titleController = TextEditingController(text: widget.note?.title ?? "");
     _contentController = TextEditingController(text: widget.note?.content ?? "");
     _isEditing = widget.note != null;
+    _selectedCategory = widget.note?.title.toLowerCase().contains('frutas') == true ? 'frutas' : 'geral';
   }
 
   @override
@@ -86,6 +95,31 @@ class _NoteScreenState extends State<NoteScreen> {
                 },
               ),
               const SizedBox(height: 16),
+              DropdownButtonFormField<String>(
+                value: _selectedCategory,
+                decoration: const InputDecoration(
+                  labelText: "Categoria",
+                  border: OutlineInputBorder(),
+                ),
+                items: _categories.map((String category) {
+                  return DropdownMenuItem<String>(
+                    value: category,
+                    child: Text(category.capitalize()),
+                  );
+                }).toList(),
+                onChanged: (String? newValue) {
+                  setState(() {
+                    _selectedCategory = newValue!;
+                  });
+                },
+                validator: (value) {
+                  if (value == null) {
+                    return "Por favor, selecione uma categoria";
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 16),
               Expanded(
                 child: TextFormField(
                   controller: _contentController,
@@ -103,5 +137,11 @@ class _NoteScreenState extends State<NoteScreen> {
         ),
       ),
     );
+  }
+}
+
+extension StringExtension on String {
+  String capitalize() {
+    return "${this[0].toUpperCase()}${substring(1)}";
   }
 }
