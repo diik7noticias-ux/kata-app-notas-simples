@@ -1,37 +1,41 @@
 {
-  "screens": {
-    "home_screen": {
-      "features": {
-        "filter_by_category": {
-          "categories": [
-            "geral",
-            "trabalho",
-            "estudo",
-            "frutas"
-          ]
-        }
+  "screen": "home_screen",
+  "kind": "list",
+  "topBar": {
+    "title": "Notas Simples",
+    "actions": [
+      {
+        "type": "popupMenu",
+        "items": [
+          {
+            "label": "Geral",
+            "value": "geral"
+          },
+          {
+            "label": "Trabalho",
+            "value": "trabalho"
+          },
+          {
+            "label": "Estudo",
+            "value": "estudo"
+          },
+          {
+            "label": "Frutas",
+            "value": "frutas"
+          }
+        ]
       }
-    },
-    "note_screen": {
-      "form_fields": {
-        "category": {
-          "options": [
-            "geral",
-            "trabalho",
-            "estudo",
-            "frutas"
-          ]
-        }
-      }
-    }
+    ]
   },
-  "widgets": {
-    "note_list_item": {
-      "category_display": {
-        "icon_mapping": {
-          "frutas": "🍎"
-        }
-      }
-    }
+  "body": {
+    "type": "empty",
+    "message": "App gerada pelo KATA."
+  },
+  "fab": {
+    "icon": "+",
+    "visible": false
+  },
+  "colors": {
+    "primary": "#1BB9BE"
   }
 }
