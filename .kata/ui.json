@@ -32,7 +32,7 @@
     "items": [
       {
         "type": "icon",
-        "icon": "note_add",
+        "icon": "add",
         "size": 64,
         "color": "#1BB9BE"
       },
@@ -43,7 +43,7 @@
           "fontSize": 20,
           "fontWeight": "600"
         },
-        "textAlign": "center"
+        "align": "center"
       },
       {
         "type": "text",
