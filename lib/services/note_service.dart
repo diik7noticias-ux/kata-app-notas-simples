@@ -1,5 +1,8 @@
 import 'package:hive_flutter/hive_flutter.dart';
 import '../models/note_model.dart';
+import 'package:hive_generator/hive_generator.dart';
+
+part 'note_model.g.dart';
 
 class NoteService {
   static const String _notesBoxName = 'notes_box';
@@ -32,14 +35,6 @@ class NoteService {
   }
 
   static List<String> getCategories() {
-    return ['Frutas', 'Legumes', 'Outros'];
-  }
-
-  static String? getCategoryName(int index) {
-    final categories = getCategories();
-    if (index >= 0 && index < categories.length) {
-      return categories[index];
-    }
-    return null;
+    return ['geral', 'trabalho', 'estudo', 'frutas'];
   }
 }
