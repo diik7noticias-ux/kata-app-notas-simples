@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "package:go_router/go_router.dart";
+import "package:hive_flutter/hive_flutter.dart";
 import "theme.dart";
 import "screens/home_screen.dart";
 import "screens/note_screen.dart";
@@ -7,6 +8,7 @@ import "services/note_service.dart";
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
   await NoteService.init();
   runApp(const KataApp());
 }
