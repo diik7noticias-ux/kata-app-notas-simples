@@ -102,7 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-extension StringExtension on String {
+extension StringExtension {
   String capitalize() {
     return "${this[0].toUpperCase()}${substring(1)}";
   }
