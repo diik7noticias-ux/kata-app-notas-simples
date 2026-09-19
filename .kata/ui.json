@@ -57,7 +57,7 @@
         "itemCount": 0,
         "itemBuilder": {
           "type": "noteListItem",
-          "onDelete": "deleteNote"
+          "hasDelete": true
         }
       }
     ]
