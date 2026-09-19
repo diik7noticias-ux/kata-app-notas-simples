@@ -12,6 +12,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   List<Note> _notes = [];
+  final List<String> _categories = ['Frutas'];
 
   @override
   void initState() {
@@ -39,6 +40,24 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Notas Simples"),
+        actions: [
+          PopupMenuButton<String>(
+            onSelected: (category) {
+              // Implementar lógica para filtrar notas por categoria
+              setState(() {
+                // Aqui você pode adicionar lógica para filtrar notas por categoria
+              });
+            },
+            itemBuilder: (BuildContext context) {
+              return _categories.map((String category) {
+                return PopupMenuItem<String>(
+                  value: category,
+                  child: Text(category),
+                );
+              }).toList();
+            },
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(24),
