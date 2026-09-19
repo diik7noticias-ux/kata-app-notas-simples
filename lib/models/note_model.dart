@@ -1,4 +1,5 @@
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:meta/meta.dart';
 
 part 'note_model.g.dart';
 
