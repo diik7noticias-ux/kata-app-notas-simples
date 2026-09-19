@@ -20,32 +20,34 @@ class KataApp extends StatelessWidget {
       title: "Notas Simples",
       debugShowCheckedModeBanner: false,
       theme: buildKataTheme(),
-      routerConfig: _router,
+      routerConfig: _buildRouter(),
     );
   }
 
-  final GoRouter _router = GoRouter(
-    routes: [
-      GoRoute(
-        path: '/',
-        builder: (context, state) => const HomeScreen(),
-      ),
-      GoRoute(
-        path: '/note',
-        builder: (context, state) => const NoteScreen(),
-      ),
-      GoRoute(
-        path: '/edit_note/:id',
-        builder: (context, state) {
-          final id = state.pathParameters['id'];
-          if (id != null) {
-            final notes = NoteService.getAllNotes();
-            final note = notes.firstWhere((note) => note.id == id, orElse: () => Note(id: '', title: '', content: '', createdAt: DateTime.now()));
-            return NoteScreen(note: note);
-          }
-          return const NoteScreen();
-        },
-      )
-    ],
-  );
+  GoRouter _buildRouter() {
+    return GoRouter(
+      routes: [
+        GoRoute(
+          path: '/',
+          builder: (context, state) => const HomeScreen(),
+        ),
+        GoRoute(
+          path: '/note',
+          builder: (context, state) => const NoteScreen(),
+        ),
+        GoRoute(
+          path: '/edit_note/:id',
+          builder: (context, state) {
+            final id = state.pathParameters['id'];
+            if (id != null) {
+              final notes = NoteService.getAllNotes();
+              final note = notes.firstWhere((note) => note.id == id, orElse: () => Note(id: '', title: '', content: '', createdAt: DateTime.now(), category: 'geral'));
+              return NoteScreen(note: note);
+            }
+            return const NoteScreen();
+          },
+        )
+      ],
+    );
+  }
 }
