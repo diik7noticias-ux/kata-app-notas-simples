@@ -28,12 +28,43 @@
     ]
   },
   "body": {
-    "type": "empty",
-    "message": "App gerada pelo KATA."
+    "type": "list",
+    "items": [
+      {
+        "type": "icon",
+        "icon": "note_add",
+        "size": 64,
+        "color": "#1BB9BE"
+      },
+      {
+        "type": "text",
+        "text": "Adicione suas notas",
+        "style": {
+          "fontSize": 20,
+          "fontWeight": "600"
+        },
+        "textAlign": "center"
+      },
+      {
+        "type": "text",
+        "text": "Clique no botão abaixo para criar uma nota",
+        "style": {
+          "color": "grey"
+        }
+      },
+      {
+        "type": "listView",
+        "itemCount": 0,
+        "itemBuilder": {
+          "type": "noteListItem",
+          "onDelete": "deleteNote"
+        }
+      }
+    ]
   },
   "fab": {
-    "icon": "+",
-    "visible": false
+    "icon": "add",
+    "visible": true
   },
   "colors": {
     "primary": "#1BB9BE"
